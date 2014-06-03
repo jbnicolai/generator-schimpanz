@@ -78,8 +78,8 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
-					"<%= config.assets %>/scripts/main.js": [
-						"<%= config.src %>/scripts/{,*/}*.js",
+					"<%%= config.assets %>/scripts/main.js": [
+						"<%%= config.src %>/scripts/{,*/}*.js",
 					]
 				}
 			}
@@ -88,9 +88,9 @@ module.exports = function(grunt) {
 		concat: {
 			dist: {
 				src: [
-					"<%= config.src %>/scripts/{,*/}*.js"
+					"<%%= config.src %>/scripts/{,*/}*.js"
 				],
-				dest: "<%= config.assets %>/scripts/main.js"
+				dest: "<%%= config.assets %>/scripts/main.js"
 			}
 		},
 
