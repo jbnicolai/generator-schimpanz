@@ -5,14 +5,23 @@
 	"license": "MIT",
 	"main": "app/index.js",
 	"repository": "schimpanz/generator-schimpanz",
+	"author": "The Schimpanz Team",
 	"engines": {
-		"node": ">=0.10.0"
+		"node": ">=0.10.0",
+		"npm": ">=1.4.0"
 	},
 	"scripts": {
 		"test": "mocha"
 	},
 	"files": [
 		"app"
+	],
+	"keywords": [
+		"schimpanz",
+		"yeoman-generator",
+		"web",
+		"app",
+		"grunt"
 	],
 	"dependencies": {
 		"yeoman-generator": "~0.17.0",
