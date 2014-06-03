@@ -1,0 +1,27 @@
+{
+	"name": "generator-schimpanz",
+	"version": "0.9.0",
+	"description": "Schimpanz wonderful Yeoman generator.",
+	"license": "MIT",
+	"main": "app/index.js",
+	"repository": "schimpanz/generator-schimpanz",
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"scripts": {
+		"test": "mocha"
+	},
+	"files": [
+		"app"
+	],
+	"dependencies": {
+		"yeoman-generator": "~0.17.0",
+		"chalk": "~0.4.0"
+	},
+	"devDependencies": {
+		"mocha": "*"
+	},
+	"peerDependencies": {
+		"yo": ">=1.0.0"
+	}
+}

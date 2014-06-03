@@ -1,0 +1,19 @@
+{
+	"eqeqeq": true,
+	"bitwise": false,
+	"camelcase": false,
+	"plusplus": false,
+	"strict": true,
+	"indent": 4,
+	"quotmark": "double",
+	"unused": "vars",
+	"maxlen": 80,
+
+	"globals": {
+		"module": true,
+		"define": true,
+		"require": true,
+		"alert": true,
+		"console": true
+	}
+}

@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+// Vendor and Bower components.
+@import 'normalize-scss/normalize';
+@import 'sass-mediaqueries/media-queries';
+
+// Variables, fonts, mixins, helpers. Common styles used across the entire site.
+@import 'project/__project';
+
+// Reusable components.
+@import 'components/__components';
+
+// Declarations views specific to the project.
+@import 'views/__views';

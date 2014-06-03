@@ -1,0 +1,8 @@
+{
+	"name": "<%= _.slugify(projectName) %>",
+	"private": true,
+	"dependencies": {
+		"normalize-scss": "~3.0.1",
+		"sass-mediaqueries": "~1.3.0"
+	}
+}

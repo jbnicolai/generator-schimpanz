@@ -1,0 +1,7 @@
+{
+	"require": {},
+	"config": {
+		"vendor-dir": "vendor",
+		"preferred-install": "dist"
+	}
+}
