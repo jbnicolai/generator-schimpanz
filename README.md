@@ -1,4 +1,4 @@
-Schimpanz project generator
+Schimpanz Project Generator
 ===============================
 You're about to use the fantastic Schimpanz generator.
 
