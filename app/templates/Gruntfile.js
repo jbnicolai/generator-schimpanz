@@ -23,7 +23,71 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ["<%%= config.src %>/scripts/{,*/}{,*/}*.js"],
-				tasks: ["jshint", "jscs", "concat"]
+				tasks: ["jshint", "jscs"],
+				options: {
+					livereload: true
+				}
+			},
+			others: {
+				files: ["<%%= config.src %>/{,*/}*.html"],
+				tasks: ["copy"]
+			},
+			livereload: {
+				options: {
+					livereload: "<%= connect.options.livereload %>"
+				},
+				files: [
+					"<%%= config.src %>/{,*/}*.html",
+					".tmp/styles/{,*/}*.css",
+					"<%%= config.src %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
+				]
+			}
+		},
+
+		// grunt server with livereload
+		connect: {
+			options: {
+				port: 9000,
+				livereload: 35729,
+				// change this to "0.0.0.0" to access the server from outside
+				hostname: "localhost"
+			},
+			livereload: {
+				options: {
+					open: true,
+					base: [
+						".tmp",
+						"<%%= config.src %>"
+					],
+					middleware: function (connect, options) {
+						var middlewares = [],
+								directory = options.directory ||
+									options.base[options.base.length - 1];
+
+						if (!Array.isArray(options.base)) {
+							options.base = [options.base];
+						}
+
+						// Enables rewrites to index.html for single page apps with routes
+						// var modRewrite = require("connect-modrewrite");
+						// middlewares.push(modRewrite(["^[^\\.]*$ /index.html [L]"]));
+
+						options.base.forEach(function(base) {
+							// Serve static files.
+							middlewares.push(connect.static(base));
+						});
+
+						// Make directory browse-able.
+						middlewares.push(connect.directory(directory));
+
+						return middlewares;
+					}
+				}
+			},
+			dist: {
+				options: {
+					base: "<%%= config.dist %>",
+				}
 			}
 		},
 
@@ -31,9 +95,13 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					dot: true,
-					src: ["<%%= config.dist %>"]
+					src: [
+						".tmp",
+						"<%%= config.dist %>"
+					]
 				}]
-			}
+			},
+			server: ".tmp"
 		},
 
 		jscs: {
@@ -59,70 +127,142 @@ module.exports = function(grunt) {
 		},
 
 		sass: {
-			dist: {
+			build: {
 				options: {
 					loadPath: [
 						"<%%= config.src %>/styles",
-						"bower_components"
+						"<%%= config.src %>/bower_components"
 					],
-					style: "compressed"
+					style: "expanded"
 				},
 				files: {
-					"<%%= config.assets %>/styles/main.css": [
-						"<%%= config.src %>/styles/{,*/}*.{scss,sass,css}"
+					".tmp/styles/main.css": [
+						"<%%= config.src %>/styles/main.scss"
 					]
 				}
 			}
 		},
 
-		uglify: {
+		// renames files for browser cache busting
+		rev: {
 			dist: {
 				files: {
-					"<%%= config.assets %>/scripts/main.js": [
-						"<%%= config.src %>/scripts/{,*/}*.js",
+					src: [
+						"<%%= config.dist %>/assets/scripts/{,*/}*.js",
+						"<%%= config.dist %>/assets/styles/{,*/}*.css",
+						"<%%= config.dist %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}",
+						"<%%= config.dist %>/assets/fonts/*"
 					]
 				}
 			}
 		},
 
-		concat: {
+		// reads html for usemin blocks and automatically concats, minifies and
+		// revision files.
+		useminPrepare: {
+			html: "<%%= config.src %>/index.html",
+			options: {
+				dest: "<%%= config.dist %>",
+				root: "<%%= config.src %>",
+				flow: {
+					html: {
+						steps: {
+							js: ["concat", "uglifyjs"],
+							css: ["cssmin"]
+						},
+						post: {}
+					}
+				}
+			}
+		},
+
+		// performs rewrites based on rev and the useminPrepare configuration
+		usemin: {
+			html: ["<%%= config.dist %>/{,*/}*.html"],
+			css: ["<%%= config.dist %>/assets/styles/*.css"],
+			options: {
+				assetsDirs: ["<%%= config.dist %>"]
+			}
+		},
+
+		// minifies css
+		cssmin: {
+			options: {
+				root: "<%%= config.src %>"
+			}
+		},
+
+		// minifies html
+		htmlmin: {
 			dist: {
-				src: [
-					"<%%= config.src %>/scripts/{,*/}*.js"
-				],
-				dest: "<%%= config.assets %>/scripts/main.js"
+				options: {
+					collapseWhitespace: true,
+					collapseBooleanAttributes: true,
+					removeCommentsFromCDATA: true,
+					removeOptionalTags: true
+				},
+				files: [{
+					expand: true,
+					cwd: "<%%= config.dist %>",
+					src: ["*.html", "views/{,*/}*.html"],
+					dest: "<%%= config.dist %>"
+				}]
 			}
 		},
 
 		copy: {
-			directories: {
-				expand: true,
-				cwd: "<%%= config.src %>",
-				src: [
-					"images/{,*/}*",
-					"fonts/{,*/}*"
-				],
-				dest: "<%%= config.assets %>"
+			build: {
+				files: [{
+					expand: true,
+					dot: true,
+					cwd: "<%%= config.src %>",
+					dest: "<%%= config.dist %>",
+					src: [
+						"*.{ico,png,txt}",
+						".htaccess",
+						"*.html",
+						"views/{,*/}*.html",
+						"images/{,*/}*",
+						"fonts/*"
+					]
+				}]
 			},
-			files: {
+			styles: {
 				expand: true,
-				filter: "isFile",
-				cwd: "<%%= config.src %>",
-				src: ["*"],
-				dest: "<%%= config.dist %>"
+				cwd: "<%%= config.src %>/styles",
+				dest: ".tmp/styles/",
+				src: "{,*/}*.css"
 			}
 		}
+	});
+
+	grunt.registerTask("serve", function (target) {
+		if (target === "dist") {
+			return grunt.task.run(["dist", "connect:dist:keepalive"]);
+		}
+
+		grunt.task.run([
+			"clean:server",
+			"sass",
+			"connect:livereload",
+			"watch"
+		]);
 	});
 
 	grunt.registerTask("test", ["jshint", "jscs"]);
 
 	grunt.registerTask("build", [
 		"test",
-		"clean",
-		"copy:files",
-		"copy:directories",
+		"clean:dist",
+		"useminPrepare",
 		"sass",
-		"uglify"
+		"concat",
+		"copy:build",
+		"cssmin",
+		"uglify",
+		"rev",
+		"usemin",
+		"htmlmin"
 	]);
 
 	grunt.registerTask("default", ["build", "watch"]);

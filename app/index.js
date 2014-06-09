@@ -82,6 +82,7 @@ var SchimpanzGenerator = yeoman.generators.Base.extend({
 	projectfiles: function () {
 		this.copy("editorconfig", ".editorconfig");
 		this.copy("jshintrc", ".jshintrc");
+		this.copy("bowerrc", ".bowerrc");
 		this.copy("gitignore", ".gitignore");
 	}
 });
