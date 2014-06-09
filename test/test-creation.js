@@ -23,7 +23,10 @@ describe("schimpanz generator", function () {
 			".jshintrc",
 			".editorconfig",
 			".bowerrc",
-			".gitignore"
+			".gitignore",
+			"Gruntfile.js",
+			"package.json",
+			"bower.json"
 		];
 
 		helpers.mockPrompt(this.app, {

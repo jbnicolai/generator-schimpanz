@@ -21,7 +21,10 @@ module.exports = function(grunt) {
 				files: ["<%%= config.src %>/styles/{,*/}*.{scss,sass,css}"],
 				tasks: ["sass"]
 			},
-			scripts: {
+			<% if (usePHP) { %>scripts: {
+				files: ["<%%= config.src %>/scripts/{,*/}{,*/}*.js"],
+				tasks: ["jshint", "jscs", "concat"]
+			}<% } else { %>scripts: {
 				files: ["<%%= config.src %>/scripts/{,*/}{,*/}*.js"],
 				tasks: ["jshint", "jscs"],
 				options: {
@@ -34,17 +37,27 @@ module.exports = function(grunt) {
 			},
 			livereload: {
 				options: {
-					livereload: "<%= connect.options.livereload %>"
+					livereload: "<%%= connect.options.livereload %>"
 				},
 				files: [
 					"<%%= config.src %>/{,*/}*.html",
 					".tmp/styles/{,*/}*.css",
-					"<%%= config.src %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
+					"<%%= config.src %>/images/{,*/}*" +
+						".{png,jpg,jpeg,gif,webp,svg}"
 				]
-			}
+			}<% } %>
 		},
 
-		// grunt server with livereload
+		<% if (usePHP) { %>clean: {
+			dist: {
+				files: [{
+					dot: true,
+					src: [
+						"<%%= config.dist %>"
+					]
+				}]
+			}
+		},<% } else { %>// grunt server with livereload
 		connect: {
 			options: {
 				port: 9000,
@@ -68,9 +81,11 @@ module.exports = function(grunt) {
 							options.base = [options.base];
 						}
 
-						// Enables rewrites to index.html for single page apps with routes
-						// var modRewrite = require("connect-modrewrite");
-						// middlewares.push(modRewrite(["^[^\\.]*$ /index.html [L]"]));
+						// Enables rewrites to index.html for single-page apps
+						var modRewrite = require("connect-modrewrite");
+						middlewares.push(
+							modRewrite(["^[^\\.]*$ /index.html [L]"])
+						);
 
 						options.base.forEach(function(base) {
 							// Serve static files.
@@ -90,7 +105,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-
 		clean: {
 			dist: {
 				files: [{
@@ -102,7 +116,7 @@ module.exports = function(grunt) {
 				}]
 			},
 			server: ".tmp"
-		},
+		},<% } %>
 
 		jscs: {
 			options: {
@@ -125,7 +139,53 @@ module.exports = function(grunt) {
 				"!<%%= config.src %>/scripts/vendor/*",
 			]
 		},
+		<% if (usePHP) { %>
+		sass: {
+			dist: {
+				options: {
+					loadPath: [
+						"<%%= config.src %>/styles",
+						"<%%= config.src %>/bower_components"
+					],
+					style: "compressed"
+				},
+				files: {
+					"<%%= config.assets %>/styles/main.css": [
+						"<%%= config.src %>/styles/main.scss"
+					]
+				}
+			}
+		},
 
+		uglify: {
+			dist: {
+				files: [{
+					expand: true,
+					cwd: "<%%= config.src %>/scripts",
+					src: "{,*/}*.js",
+					dest: "<%%= config.assets %>/scripts"
+				}]
+			}
+		},
+
+		copy: {
+			directories: {
+				expand: true,
+				cwd: "<%%= config.src %>",
+				src: [
+					"images/{,*/}*",
+					"fonts/{,*/}*"
+				],
+				dest: "<%%= config.assets %>"
+			},
+			files: {
+				expand: true,
+				filter: "isFile",
+				cwd: "<%%= config.src %>",
+				src: ["*"],
+				dest: "<%%= config.dist %>"
+			}
+		}<% } else { %>
 		sass: {
 			build: {
 				options: {
@@ -148,10 +208,11 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					src: [
-						"<%%= config.dist %>/assets/scripts/{,*/}*.js",
-						"<%%= config.dist %>/assets/styles/{,*/}*.css",
-						"<%%= config.dist %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}",
-						"<%%= config.dist %>/assets/fonts/*"
+						"<%%= config.assets %>/scripts/{,*/}*.js",
+						"<%%= config.assets %>/styles/{,*/}*.css",
+						"<%%= config.assets %>/images/{,*/}*." +
+							"{png,jpg,jpeg,gif,webp,svg}",
+						"<%%= config.assets %>/fonts/*"
 					]
 				}
 			}
@@ -179,7 +240,7 @@ module.exports = function(grunt) {
 		// performs rewrites based on rev and the useminPrepare configuration
 		usemin: {
 			html: ["<%%= config.dist %>/{,*/}*.html"],
-			css: ["<%%= config.dist %>/assets/styles/*.css"],
+			css: ["<%%= config.assets %>/styles/*.css"],
 			options: {
 				assetsDirs: ["<%%= config.dist %>"]
 			}
@@ -233,7 +294,8 @@ module.exports = function(grunt) {
 				dest: ".tmp/styles/",
 				src: "{,*/}*.css"
 			}
-		}
+		}<% } %>
+
 	});
 
 	grunt.registerTask("serve", function (target) {
@@ -251,7 +313,14 @@ module.exports = function(grunt) {
 
 	grunt.registerTask("test", ["jshint", "jscs"]);
 
-	grunt.registerTask("build", [
+	<% if (usePHP) { %>grunt.registerTask("build", [
+		"test",
+		"clean",
+		"copy:files",
+		"copy:directories",
+		"sass",
+		"uglify"
+	]);<% } else { %>grunt.registerTask("build", [
 		"test",
 		"clean:dist",
 		"useminPrepare",
@@ -263,7 +332,7 @@ module.exports = function(grunt) {
 		"rev",
 		"usemin",
 		"htmlmin"
-	]);
+	]);<% } %>
 
 	grunt.registerTask("default", ["build", "watch"]);
 };

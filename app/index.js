@@ -56,6 +56,9 @@ var SchimpanzGenerator = yeoman.generators.Base.extend({
 		if (this.usePHP) {
 			this.copy("_composer.json", "composer.json");
 			this.distPath = "public";
+			this.template("index.php", "src/index.php");
+		} else {
+			this.template("index.html", "src/index.html");
 		}
 
 		this.mkdir("src");
@@ -65,7 +68,7 @@ var SchimpanzGenerator = yeoman.generators.Base.extend({
 		this.directory("src/styles", "src/styles");
 		this.directory("src/scripts", "src/scripts");
 
-		this.template("index.html", "src/index.html");
+		// this.template("index.html", "src/index.html");
 		this.template("favicon.ico", "src/favicon.ico");
 		this.template("robots.txt", "src/robots.txt");
 		this.template("htaccess", "src/.htaccess");
@@ -76,7 +79,8 @@ var SchimpanzGenerator = yeoman.generators.Base.extend({
 
 		this.copy("README.md");
 		this.copy("CHANGELOG.md");
-		this.copy("Gruntfile.js");
+
+		this.template("Gruntfile.js", "Gruntfile.js");
 	},
 
 	projectfiles: function () {
