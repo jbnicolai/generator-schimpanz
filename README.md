@@ -1,5 +1,5 @@
 Schimpanz Project Generator
-===============================
+===========================
 You're about to use the fantastic Schimpanz generator.
 
 **Please note** that you should update this generator on your local computer before each new project. We update this generator on a monthly basis.
