@@ -1,0 +1,108 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish', '.' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.28
+4 verbose node symlink /usr/local/bin/node
+5 verbose publish [ '.' ]
+6 verbose cache add [ '.', null ]
+7 verbose cache add name=undefined spec="." args=[".",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: '.',
+8 verbose parsed url   path: '.',
+8 verbose parsed url   href: '.' }
+9 silly lockFile 3a52ce78- .
+10 verbose lock . /Users/vincent/.npm/3a52ce78-.lock
+11 verbose tar pack [ '/Users/vincent/.npm/generator-schimpanz/0.9.5/package.tgz',
+11 verbose tar pack   '.' ]
+12 verbose tarball /Users/vincent/.npm/generator-schimpanz/0.9.5/package.tgz
+13 verbose folder .
+14 info prepublish generator-schimpanz@0.9.5
+15 silly lockFile 1f1177db-tar tar://.
+16 verbose lock tar://. /Users/vincent/.npm/1f1177db-tar.lock
+17 silly lockFile 5791477d-ator-schimpanz-0-9-5-package-tgz tar:///Users/vincent/.npm/generator-schimpanz/0.9.5/package.tgz
+18 verbose lock tar:///Users/vincent/.npm/generator-schimpanz/0.9.5/package.tgz /Users/vincent/.npm/5791477d-ator-schimpanz-0-9-5-package-tgz.lock
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 1f1177db-tar tar://.
+21 silly lockFile 5791477d-ator-schimpanz-0-9-5-package-tgz tar:///Users/vincent/.npm/generator-schimpanz/0.9.5/package.tgz
+22 silly lockFile 5791477d-ator-schimpanz-0-9-5-package-tgz tar:///Users/vincent/.npm/generator-schimpanz/0.9.5/package.tgz
+23 silly lockFile 938c948d-enerator-schimpanz-0-9-5-package /Users/vincent/.npm/generator-schimpanz/0.9.5/package
+24 verbose lock /Users/vincent/.npm/generator-schimpanz/0.9.5/package /Users/vincent/.npm/938c948d-enerator-schimpanz-0-9-5-package.lock
+25 silly lockFile 938c948d-enerator-schimpanz-0-9-5-package /Users/vincent/.npm/generator-schimpanz/0.9.5/package
+26 silly lockFile 938c948d-enerator-schimpanz-0-9-5-package /Users/vincent/.npm/generator-schimpanz/0.9.5/package
+27 silly lockFile 3a52ce78- .
+28 silly lockFile 3a52ce78- .
+29 silly publish { name: 'generator-schimpanz',
+29 silly publish   version: '0.9.5',
+29 silly publish   description: 'Schimpanz wonderful Yeoman generator.',
+29 silly publish   license: 'MIT',
+29 silly publish   main: 'app/index.js',
+29 silly publish   repository:
+29 silly publish    { type: 'git',
+29 silly publish      url: 'git://github.com/schimpanz/generator-schimpanz' },
+29 silly publish   author: { name: 'The Schimpanz Team' },
+29 silly publish   engines: { node: '>=0.10.0', npm: '>=1.4.0' },
+29 silly publish   scripts: { test: 'mocha' },
+29 silly publish   files: [ 'app' ],
+29 silly publish   keywords: [ 'schimpanz', 'yeoman-generator', 'web', 'app', 'grunt' ],
+29 silly publish   dependencies: { 'yeoman-generator': '~0.17.0', chalk: '~0.4.0' },
+29 silly publish   devDependencies: { mocha: '*' },
+29 silly publish   peerDependencies: { yo: '>=1.0.0' },
+29 silly publish   readme: 'Schimpanz Project Generator\n===========================\nYou\'re about to use the fantastic Schimpanz generator.\n\n**Please note** that you should update this generator on your local computer before each new project. We update this generator on a monthly basis.\n\n## Getting Started\n\nFirst you need to install `Yeoman`:\n\n```\n$ npm install -g yo\n```\n\nand then install our project generator:\n\n```\n$ npm install -g generator-schimpanz\n```\n\nFinally, initiate the generator:\n\n```\n$ mkdir new-awesome-project && cd new-awesome-project\n$ yo schimpanz\n```\n\n## What\'s inside\n\nThe generated project contains:\n* [Grunt](#grunt)\n* [Bower](#bower)\n* [SASS](#sass)\n\n#### Grunt ####\n\n[Grunt](http://gruntjs.com/getting-started) is a task manager tool that makes life easier for a fellow developer. If you have installed [Grunt](http://gruntjs.com/getting-started) globally in the past, you will need to remove it first:\n\n```\n$ npm uninstall -g grunt\n```\n\nIn order to get started, you\'ll want to install [Grunt](http://gruntjs.com/getting-started)\'s command line interface (CLI) globally. You may need to use sudo (for OSX, *nix, BSD etc) or run your command shell as Administrator (for Windows) to do this.\n\n```\n$ npm install -g grunt-cli\n```\n\nThis will put the grunt command in your system path, allowing it to be run from any directory.\n\n#### Bower ####\n\n[Bower](https://github.com/bower/bower) is a package manager for the web. It offers a generic, unopinionated solution to the problem of front-end package management.\n\nIn order to get started, you\'ll want to install [Bower](http://bower.io/#installing-bower). Run this command.\n\n```\n$ npm install -g bower\n```\n\nTo install a package simple run this command:\n\n```\n$ bower install --save example-package\n```\n\n#### SASS ####\n\n[Sass](http://sass-lang.com/) is an extension of CSS3, adding nested rules, variables, mixins, selector inheritance, and more.\n\nTo install SASS you need to run this command\n\n```\n$ sudo gem install sass\n```\n\nIf your project requires Compass, please run this commmand\n\n```\n$ sudo gem install compass\n```\n\nFor more documentation on Sass visit [http://sass-lang.com](http://sass-lang.com/documentation/file.SASS_REFERENCE.html).\n\n### Grunt tasks\n\n* `grunt`\nCompiles JavaScript and CSS to `dist` and watch any changes in `assets`\n\n* `grunt build`\nCompiles and minifies assets to `dist`.\n',
+29 silly publish   readmeFilename: 'README.md',
+29 silly publish   gitHead: 'c2f0b4e48d67cfe08d1bd4536dd7865e9aba45a3',
+29 silly publish   bugs: { url: 'https://github.com/schimpanz/generator-schimpanz/issues' },
+29 silly publish   homepage: 'https://github.com/schimpanz/generator-schimpanz',
+29 silly publish   _id: 'generator-schimpanz@0.9.5',
+29 silly publish   _shasum: 'fe15c1882d9768ec7cb6bc0f4a3c7da04da07b3b',
+29 silly publish   _from: '.' }
+30 verbose request id 6a8524129c0c051c
+31 verbose url raw generator-schimpanz
+32 verbose url resolving [ 'https://registry.npmjs.org/', './generator-schimpanz' ]
+33 verbose url resolved https://registry.npmjs.org/generator-schimpanz
+34 info trying registry request attempt 1 at 15:41:25
+35 http PUT https://registry.npmjs.org/generator-schimpanz
+36 http 403 https://registry.npmjs.org/generator-schimpanz
+37 verbose headers { date: 'Tue, 10 Jun 2014 13:41:26 GMT',
+37 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+37 verbose headers   'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=1',
+37 verbose headers   'content-length': '5571',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   'x-served-by': 'cache-ams4128-AMS',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1402407685.782171,VS0,VE623',
+37 verbose headers   'keep-alive': 'timeout=10, max=50',
+37 verbose headers   connection: 'Keep-Alive' }
+38 error publish Failed PUT 403
+39 error Error: forbidden cannot modify pre-existing version: 0.9.5
+39 error old={"name":"generator-schimpanz","version":"0.9.5","description":"Schimpanz wonderful Yeoman generator.","license":"MIT","main":"app/index.js","repository":{"type":"git","url":"git://github.com/schimpanz/generator-schimpanz"},"author":{"name":"The Schimpanz Team"},"engines":{"node":">=0.10.0","npm":">=1.4.0"},"scripts":{"test":"mocha"},"files":["app"],"keywords":["schimpanz","yeoman-generator","web","app","grunt"],"dependencies":{"yeoman-generator":"~0.17.0","chalk":"~0.4.0"},"devDependencies":{"mocha":"*"},"peerDependencies":{"yo":">=1.0.0"},"bugs":{"url":"https://github.com/schimpanz/generator-schimpanz/issues"},"homepage":"https://github.com/schimpanz/generator-schimpanz","_id":"generator-schimpanz@0.9.5","dist":{"shasum":"3b6ea35e1efc5cab933fd01bd5b30feed62ea90a","tarball":"http://registry.npmjs.org/generator-schimpanz/-/generator-schimpanz-0.9.5.tgz"},"_from":".","_npmVersion":"1.4.3","_npmUser":{"name":"magnus-bergman","email":"karlmagnusbergman@gmail.com"},"maintainers":[{"name":"vinkla","email":"vincentklaiber@gmail.com"},{"name":"magnus-bergman","email":"karlmagnusbergman@gmail.com"}]}
+39 error new={"name":"generator-schimpanz","version":"0.9.5","description":"Schimpanz wonderful Yeoman generator.","license":"MIT","main":"app/index.js","repository":{"type":"git","url":"git://github.com/schimpanz/generator-schimpanz"},"author":{"name":"The Schimpanz Team"},"engines":{"node":">=0.10.0","npm":">=1.4.0"},"scripts":{"test":"mocha"},"files":["app"],"keywords":["schimpanz","yeoman-generator","web","app","grunt"],"dependencies":{"yeoman-generator":"~0.17.0","chalk":"~0.4.0"},"devDependencies":{"mocha":"*"},"peerDependencies":{"yo":">=1.0.0"},"readme":"Schimpanz Project Generator\u000a===========================\u000aYou're about to use the fantastic Schimpanz generator.\u000a\u000a**Please note** that you should update this generator on your local computer before each new project. We update this generator on a monthly basis.\u000a\u000a## Getting Started\u000a\u000aFirst you need to install `Yeoman`:\u000a\u000a```\u000a$ npm install -g yo\u000a```\u000a\u000aand then install our project generator:\u000a\u000a```\u000a$ npm install -g generator-schimpanz\u000a```\u000a\u000aFinally, initiate the generator:\u000a\u000a```\u000a$ mkdir new-awesome-project && cd new-awesome-project\u000a$ yo schimpanz\u000a```\u000a\u000a## What's inside\u000a\u000aThe generated project contains:\u000a* [Grunt](#grunt)\u000a* [Bower](#bower)\u000a* [SASS](#sass)\u000a\u000a#### Grunt ####\u000a\u000a[Grunt](http://gruntjs.com/getting-started) is a task manager tool that makes life easier for a fellow developer. If you have installed [Grunt](http://gruntjs.com/getting-started) globally in the past, you will need to remove it first:\u000a\u000a```\u000a$ npm uninstall -g grunt\u000a```\u000a\u000aIn order to get started, you'll want to install [Grunt](http://gruntjs.com/getting-started)'s command line interface (CLI) globally. You may need to use sudo (for OSX, *nix, BSD etc) or run your command shell as Administrator (for Windows) to do this.\u000a\u000a```\u000a$ npm install -g grunt-cli\u000a```\u000a\u000aThis will put the grunt command in your system path, allowing it to be run from any directory.\u000a\u000a#### Bower ####\u000a\u000a[Bower](https://github.com/bower/bower) is a package manager for the web. It offers a generic, unopinionated solution to the problem of front-end package management.\u000a\u000aIn order to get started, you'll want to install [Bower](http://bower.io/#installing-bower). Run this command.\u000a\u000a```\u000a$ npm install -g bower\u000a```\u000a\u000aTo install a package simple run this command:\u000a\u000a```\u000a$ bower install --save example-package\u000a```\u000a\u000a#### SASS ####\u000a\u000a[Sass](http://sass-lang.com/) is an extension of CSS3, adding nested rules, variables, mixins, selector inheritance, and more.\u000a\u000aTo install SASS you need to run this command\u000a\u000a```\u000a$ sudo gem install sass\u000a```\u000a\u000aIf your project requires Compass, please run this commmand\u000a\u000a```\u000a$ sudo gem install compass\u000a```\u000a\u000aFor more documentation on Sass visit [http://sass-lang.com](http://sass-lang.com/documentation/file.SASS_REFERENCE.html).\u000a\u000a### Grunt tasks\u000a\u000a* `grunt`\u000aCompiles JavaScript and CSS to `dist` and watch any changes in `assets`\u000a\u000a* `grunt build`\u000aCompiles and minifies assets to `dist`.\u000a","readmeFilename":"README.md","gitHead":"c2f0b4e48d67cfe08d1bd4536dd7865e9aba45a3","bugs":{"url":"https://github.com/schimpanz/generator-schimpanz/issues"},"homepage":"https://github.com/schimpanz/generator-schimpanz","_id":"generator-schimpanz@0.9.5","_shasum":"fe15c1882d9768ec7cb6bc0f4a3c7da04da07b3b","_from":".","_npmVersion":"1.4.14","_npmUser":{"name":"vinkla","email":"vincentklaiber@gmail.com"},"maintainers":[{"name":"vinkla","email":"vincentklaiber@gmail.com"}],"dist":{"shasum":"fe15c1882d9768ec7cb6bc0f4a3c7da04da07b3b","tarball":"http://registry.npmjs.org/generator-schimpanz/-/generator-schimpanz-0.9.5.tgz"}}: generator-schimpanz
+39 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:275:14)
+39 error     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:213:65)
+39 error     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/node_modules/request/request.js:121:22)
+39 error     at Request.EventEmitter.emit (events.js:98:17)
+39 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/node_modules/request/request.js:985:14)
+39 error     at Request.EventEmitter.emit (events.js:117:20)
+39 error     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/node_modules/request/request.js:936:12)
+39 error     at IncomingMessage.EventEmitter.emit (events.js:117:20)
+39 error     at _stream_readable.js:919:16
+39 error     at process._tickCallback (node.js:419:13)
+40 error If you need help, you may report this *entire* log,
+40 error including the npm and node versions, at:
+40 error     <http://github.com/npm/npm/issues>
+41 error System Darwin 13.2.0
+42 error command "node" "/usr/local/bin/npm" "publish" "."
+43 error cwd /Users/vincent/Documents/generator-schimpanz
+44 error node -v v0.10.28
+45 error npm -v 1.4.14
+46 verbose exit [ 1, true ]
