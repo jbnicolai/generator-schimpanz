@@ -4,4 +4,4 @@ node_modules
 src/bower_components
 vendor
 composer.lock
-dist
+build
