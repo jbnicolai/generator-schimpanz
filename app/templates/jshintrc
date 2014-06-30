@@ -19,7 +19,6 @@
 	"unused": false,
 	"trailing": true,
 	"smarttabs": true,
-	"maxlen": 80,
 	"globals": {
 		"jquery": true,
 		"angular": true,
