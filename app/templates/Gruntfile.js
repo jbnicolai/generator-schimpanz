@@ -282,7 +282,14 @@ module.exports = function(grunt) {
 						"*.{ico,png,txt}",
 						".htaccess",
 						"*.html",
-						"views/{,*/}*.html",
+						"views/{,*/}*.html"
+					]
+				},
+				{
+					expand: true,
+					cwd: "<%%= config.src %>",
+					dest: "<%%= config.assets %>",
+					src: [
 						"images/{,*/}*",
 						"fonts/*"
 					]
