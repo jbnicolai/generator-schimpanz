@@ -1,49 +1,49 @@
 module.exports = function(grunt) {
-	"use strict";
+	'use strict';
 
 	// configurable paths
 	var config = {
-		src: "src",
-		dist: <% if (usePHP) { %>"public"<% } else { %>"build"<% } %>,
-		assets: <% if (usePHP) { %>"public/assets"<% } else { %>"build/assets"<% } %>
+		src: 'src',
+		dist: <% if (usePHP) { %>'public'<% } else { %>'build'<% } %>,
+		assets: <% if (usePHP) { %>'public/assets'<% } else { %>'build/assets'<% } %>
 	};
 
 	// load all grunt tasks
-	require("load-grunt-tasks")(grunt);
+	require('load-grunt-tasks')(grunt);
 
 	// displays the execution time of grunt tasks
-	require("time-grunt")(grunt);
+	require('time-grunt')(grunt);
 
 	grunt.initConfig({
 		config: config,
 		watch: {
 			styles: {
-				files: ["<%%= config.src %>/styles/{,*/}*.{scss,sass,css}"],
-				tasks: ["sass"]
+				files: ['<%%= config.src %>/styles/{,*/}*.{scss,sass,css}'],
+				tasks: ['sass']
 			},
 			<% if (usePHP) { %>scripts: {
-				files: ["<%%= config.src %>/scripts/{,*/}{,*/}*.js"],
-				tasks: ["jshint", "jscs", "concat"]
+				files: ['<%%= config.src %>/scripts/{,*/}{,*/}*.js'],
+				tasks: ['jshint', 'jscs', 'concat']
 			}<% } else { %>scripts: {
-				files: ["<%%= config.src %>/scripts/{,*/}{,*/}*.js"],
-				tasks: ["jshint", "jscs"],
+				files: ['<%%= config.src %>/scripts/{,*/}{,*/}*.js'],
+				tasks: ['jshint', 'jscs'],
 				options: {
 					livereload: true
 				}
 			},
 			others: {
-				files: ["<%%= config.src %>/{,*/}*.html"],
-				tasks: ["copy"]
+				files: ['<%%= config.src %>/{,*/}*.html'],
+				tasks: ['copy']
 			},
 			livereload: {
 				options: {
-					livereload: "<%%= connect.options.livereload %>"
+					livereload: '<%%= connect.options.livereload %>'
 				},
 				files: [
-					"<%%= config.src %>/{,*/}*.html",
-					".tmp/styles/{,*/}*.css",
-					"<%%= config.src %>/images/{,*/}*" +
-						".{png,jpg,jpeg,gif,webp,svg}"
+					'<%%= config.src %>/{,*/}*.html',
+					'.tmp/styles/{,*/}*.css',
+					'<%%= config.src %>/images/{,*/}*' +
+						'.{png,jpg,jpeg,gif,webp,svg}'
 				]
 			}<% } %>
 		},
@@ -53,24 +53,34 @@ module.exports = function(grunt) {
 				files: [{
 					dot: true,
 					src: [
-						"<%%= config.dist %>"
+						'<%%= config.dist %>'
 					]
 				}]
+			}
+		},
+			concat: {
+				dist: {
+					files: {
+						'<%= config.assets %>/scripts/main.js': [
+							'<%= config.src %>/scripts/{,*/}{,*/}*.js'
+						]
+					}
+				}
 			}
 		},<% } else { %>// grunt server with livereload
 		connect: {
 			options: {
 				port: 9000,
 				livereload: 35729,
-				// change this to "0.0.0.0" to access the server from outside
-				hostname: "localhost"
+				// change this to '0.0.0.0' to access the server from outside
+				hostname: 'localhost'
 			},
 			livereload: {
 				options: {
 					open: true,
 					base: [
-						".tmp",
-						"<%%= config.src %>"
+						'.tmp',
+						'<%%= config.src %>'
 					],
 					middleware: function (connect, options) {
 						var middlewares = [],
@@ -82,9 +92,9 @@ module.exports = function(grunt) {
 						}
 
 						// Enables rewrites to index.html for single-page apps
-						var modRewrite = require("connect-modrewrite");
+						var modRewrite = require('connect-modrewrite');
 						middlewares.push(
-							modRewrite(["^[^\\.]*$ /index.html [L]"])
+							modRewrite(['^[^\\.]*$ /index.html [L]'])
 						);
 
 						options.base.forEach(function(base) {
@@ -101,7 +111,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				options: {
-					base: "<%%= config.dist %>",
+					base: '<%%= config.dist %>',
 				}
 			}
 		},
@@ -110,33 +120,33 @@ module.exports = function(grunt) {
 				files: [{
 					dot: true,
 					src: [
-						".tmp",
-						"<%%= config.dist %>"
+						'.tmp',
+						'<%%= config.dist %>'
 					]
 				}]
 			},
-			server: ".tmp"
+			server: '.tmp'
 		},<% } %>
 
 		jscs: {
 			options: {
-				config: ".jscs.json"
+				config: '.jscs.json'
 			},
 			all: [
-				"Gruntfile.js",
-				"<%%= config.src %>/scripts/{,*/}*.js",
-				"!<%%= config.src %>/scripts/vendor/*",
+				'Gruntfile.js',
+				'<%%= config.src %>/scripts/{,*/}*.js',
+				'!<%%= config.src %>/scripts/vendor/*',
 			]
 		},
 
 		jshint: {
 			options: {
-				jshintrc: ".jshintrc"
+				jshintrc: '.jshintrc'
 			},
 			all: [
-				"Gruntfile.js",
-				"<%%= config.src %>/scripts/{,*/}*.js",
-				"!<%%= config.src %>/scripts/vendor/*",
+				'Gruntfile.js',
+				'<%%= config.src %>/scripts/{,*/}*.js',
+				'!<%%= config.src %>/scripts/vendor/*',
 			]
 		},
 		<% if (usePHP) { %>
@@ -144,14 +154,14 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					loadPath: [
-						"<%%= config.src %>/styles",
-						"<%%= config.src %>/bower_components"
+						'<%%= config.src %>/styles',
+						'<%%= config.src %>/bower_components'
 					],
-					style: "compressed"
+					style: 'compressed'
 				},
 				files: {
-					"<%%= config.assets %>/styles/main.css": [
-						"<%%= config.src %>/styles/main.scss"
+					'<%%= config.assets %>/styles/main.css': [
+						'<%%= config.src %>/styles/main.scss'
 					]
 				}
 			}
@@ -161,9 +171,9 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: "<%%= config.src %>/scripts",
-					src: "{,*/}*.js",
-					dest: "<%%= config.assets %>/scripts"
+					cwd: '<%%= config.src %>/scripts',
+					src: '{,*/}*.js',
+					dest: '<%%= config.assets %>/scripts'
 				}]
 			}
 		},
@@ -171,33 +181,33 @@ module.exports = function(grunt) {
 		copy: {
 			directories: {
 				expand: true,
-				cwd: "<%%= config.src %>",
+				cwd: '<%%= config.src %>',
 				src: [
-					"images/{,*/}*",
-					"fonts/{,*/}*"
+					'images/{,*/}*',
+					'fonts/{,*/}*'
 				],
-				dest: "<%%= config.assets %>"
+				dest: '<%%= config.assets %>'
 			},
 			files: {
 				expand: true,
-				filter: "isFile",
-				cwd: "<%%= config.src %>",
-				src: ["*"],
-				dest: "<%%= config.dist %>"
+				filter: 'isFile',
+				cwd: '<%%= config.src %>',
+				src: ['*'],
+				dest: '<%%= config.dist %>'
 			}
 		}<% } else { %>
 		sass: {
 			build: {
 				options: {
 					loadPath: [
-						"<%%= config.src %>/styles",
-						"<%%= config.src %>/bower_components"
+						'<%%= config.src %>/styles',
+						'<%%= config.src %>/bower_components'
 					],
-					style: "expanded"
+					style: 'expanded'
 				},
 				files: {
-					".tmp/styles/main.css": [
-						"<%%= config.src %>/styles/main.scss"
+					'.tmp/styles/main.css': [
+						'<%%= config.src %>/styles/main.scss'
 					]
 				}
 			}
@@ -208,11 +218,11 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					src: [
-						"<%%= config.assets %>/scripts/{,*/}*.js",
-						"<%%= config.assets %>/styles/{,*/}*.css",
-						"<%%= config.assets %>/images/{,*/}*." +
-							"{png,jpg,jpeg,gif,webp,svg}",
-						"<%%= config.assets %>/fonts/*"
+						'<%%= config.assets %>/scripts/{,*/}*.js',
+						'<%%= config.assets %>/styles/{,*/}*.css',
+						'<%%= config.assets %>/images/{,*/}*.' +
+							'{png,jpg,jpeg,gif,webp,svg}',
+						'<%%= config.assets %>/fonts/*'
 					]
 				}
 			}
@@ -221,15 +231,15 @@ module.exports = function(grunt) {
 		// reads html for usemin blocks and automatically concats, minifies and
 		// revision files.
 		useminPrepare: {
-			html: "<%%= config.src %>/index.html",
+			html: '<%%= config.src %>/index.html',
 			options: {
-				dest: "<%%= config.dist %>",
-				root: "<%%= config.src %>",
+				dest: '<%%= config.dist %>',
+				root: '<%%= config.src %>',
 				flow: {
 					html: {
 						steps: {
-							js: ["concat", "uglifyjs"],
-							css: ["cssmin"]
+							js: ['concat', 'uglifyjs'],
+							css: ['cssmin']
 						},
 						post: {}
 					}
@@ -239,17 +249,17 @@ module.exports = function(grunt) {
 
 		// performs rewrites based on rev and the useminPrepare configuration
 		usemin: {
-			html: ["<%%= config.dist %>/{,*/}*.html"],
-			css: ["<%%= config.assets %>/styles/*.css"],
+			html: ['<%%= config.dist %>/{,*/}*.html'],
+			css: ['<%%= config.assets %>/styles/*.css'],
 			options: {
-				assetsDirs: ["<%%= config.dist %>"]
+				assetsDirs: ['<%%= config.dist %>']
 			}
 		},
 
 		// minifies css
 		cssmin: {
 			options: {
-				root: "<%%= config.src %>"
+				root: '<%%= config.src %>'
 			}
 		},
 
@@ -264,9 +274,9 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					expand: true,
-					cwd: "<%%= config.dist %>",
-					src: ["*.html", "views/{,*/}*.html"],
-					dest: "<%%= config.dist %>"
+					cwd: '<%%= config.dist %>',
+					src: ['*.html', 'views/{,*/}*.html'],
+					dest: '<%%= config.dist %>'
 				}]
 			}
 		},
@@ -276,70 +286,70 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: "<%%= config.src %>",
-					dest: "<%%= config.dist %>",
+					cwd: '<%%= config.src %>',
+					dest: '<%%= config.dist %>',
 					src: [
-						"*.{ico,png,txt}",
-						".htaccess",
-						"*.html",
-						"views/{,*/}*.html"
+						'*.{ico,png,txt}',
+						'.htaccess',
+						'*.html',
+						'views/{,*/}*.html'
 					]
 				},
 				{
 					expand: true,
-					cwd: "<%%= config.src %>",
-					dest: "<%%= config.assets %>",
+					cwd: '<%%= config.src %>',
+					dest: '<%%= config.assets %>',
 					src: [
-						"images/{,*/}*",
-						"fonts/*"
+						'images/{,*/}*',
+						'fonts/*'
 					]
 				}]
 			},
 			styles: {
 				expand: true,
-				cwd: "<%%= config.src %>/styles",
-				dest: ".tmp/styles/",
-				src: "{,*/}*.css"
+				cwd: '<%%= config.src %>/styles',
+				dest: '.tmp/styles/',
+				src: '{,*/}*.css'
 			}
 		}<% } %>
 
 	});
 
-	grunt.registerTask("serve", function (target) {
-		if (target === "dist") {
-			return grunt.task.run(["dist", "connect:dist:keepalive"]);
+	grunt.registerTask('serve', function (target) {
+		if (target === 'dist') {
+			return grunt.task.run(['dist', 'connect:dist:keepalive']);
 		}
 
 		grunt.task.run([
-			"clean:server",
-			"sass",
-			"connect:livereload",
-			"watch"
+			'clean:server',
+			'sass',
+			'connect:livereload',
+			'watch'
 		]);
 	});
 
-	grunt.registerTask("test", ["jshint", "jscs"]);
+	grunt.registerTask('test', ['jshint', 'jscs']);
 
-	<% if (usePHP) { %>grunt.registerTask("build", [
-		"test",
-		"clean",
-		"copy:files",
-		"copy:directories",
-		"sass",
-		"uglify"
-	]);<% } else { %>grunt.registerTask("build", [
-		"test",
-		"clean:dist",
-		"useminPrepare",
-		"sass",
-		"concat",
-		"copy:build",
-		"cssmin",
-		"uglify",
-		"rev",
-		"usemin",
-		"htmlmin"
+	<% if (usePHP) { %>grunt.registerTask('build', [
+		'test',
+		'clean',
+		'copy:files',
+		'copy:directories',
+		'sass',
+		'uglify'
+	]);<% } else { %>grunt.registerTask('build', [
+		'test',
+		'clean:dist',
+		'useminPrepare',
+		'sass',
+		'concat',
+		'copy:build',
+		'cssmin',
+		'uglify',
+		'rev',
+		'usemin',
+		'htmlmin'
 	]);<% } %>
 
-	grunt.registerTask("default", ["build", "watch"]);
+	grunt.registerTask('default', ['build', 'watch']);
 };
