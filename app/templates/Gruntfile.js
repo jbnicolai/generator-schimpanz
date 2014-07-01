@@ -57,24 +57,6 @@ module.exports = function(grunt) {
 					]
 				}]
 			}
-		},
-			concat: {
-				dist: {
-					files: {
-						'<%= config.assets %>/scripts/main.js': [
-							'<%= config.src %>/scripts/{,*/}{,*/}*.js'
-						]
-					}
-				}
-			},
-			uglify: {
-				dist: {
-					files: {
-						'<%= config.assets %>/scripts/main.js': [
-							'<%= config.src %>/scripts/{,*/}{,*/}*.js'
-						]
-					}
-				}
 		},<% } else { %>// grunt server with livereload
 		connect: {
 			options: {
@@ -175,14 +157,23 @@ module.exports = function(grunt) {
 			}
 		},
 
+		concat: {
+			dist: {
+				files: {
+					'<%= config.assets %>/scripts/main.js': [
+						'<%= config.src %>/scripts/{,*/}{,*/}*.js'
+					]
+				}
+			}
+		},
+
 		uglify: {
 			dist: {
-				files: [{
-					expand: true,
-					cwd: '<%%= config.src %>/scripts',
-					src: '{,*/}*.js',
-					dest: '<%%= config.assets %>/scripts'
-				}]
+				files: {
+					'<%= config.assets %>/scripts/main.js': [
+						'<%= config.src %>/scripts/{,*/}{,*/}*.js'
+					]
+				}
 			}
 		},
 
