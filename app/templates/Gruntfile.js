@@ -66,7 +66,15 @@ module.exports = function(grunt) {
 						]
 					}
 				}
-			}
+			},
+			uglify: {
+				dist: {
+					files: {
+						'<%= config.assets %>/scripts/main.js': [
+							'<%= config.src %>/scripts/{,*/}{,*/}*.js'
+						]
+					}
+				}
 		},<% } else { %>// grunt server with livereload
 		connect: {
 			options: {
