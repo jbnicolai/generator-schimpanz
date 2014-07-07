@@ -74,7 +74,6 @@ var SchimpanzGenerator = yeoman.generators.Base.extend({
 		this.template("htaccess", "src/.htaccess");
 
 		this.copy("_package.json", "package.json");
-		this.copy("_jscs.json", ".jscs.json");
 		this.copy("_bower.json", "bower.json");
 
 		this.copy("README.md");
@@ -86,6 +85,7 @@ var SchimpanzGenerator = yeoman.generators.Base.extend({
 	projectfiles: function () {
 		this.copy("editorconfig", ".editorconfig");
 		this.copy("jshintrc", ".jshintrc");
+		this.copy("jscsrc", ".jscsrc");
 		this.copy("bowerrc", ".bowerrc");
 		this.copy("gitignore", ".gitignore");
 	}

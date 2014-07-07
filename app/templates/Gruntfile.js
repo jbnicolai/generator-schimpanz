@@ -120,12 +120,12 @@ module.exports = function(grunt) {
 
 		jscs: {
 			options: {
-				config: '.jscs.json'
+				config: '.jscsrc'
 			},
 			all: [
 				'Gruntfile.js',
-				'<%%= config.src %>/scripts/{,*/}*.js',
-				'!<%%= config.src %>/scripts/vendor/*',
+				'<%= config.src %>/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
+				'!<%= config.src %>/scripts/vendor/*'
 			]
 		},
 
@@ -135,8 +135,8 @@ module.exports = function(grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%%= config.src %>/scripts/{,*/}*.js',
-				'!<%%= config.src %>/scripts/vendor/*',
+				'<%= config.src %>/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
+				'!<%= config.src %>/scripts/vendor/*'
 			]
 		},
 		<% if (usePHP) { %>
