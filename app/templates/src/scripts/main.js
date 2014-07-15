@@ -1,9 +1,9 @@
 (function() {
-	"use strict";
+	'use strict';
 
 	var document = window.document,
-		heading = document.createElement("h1");
+		heading = document.createElement('h1');
 
-	heading.innerHTML = "Hello World";
+	heading.innerHTML = 'Hello World';
 	document.body.appendChild(heading);
 }());
