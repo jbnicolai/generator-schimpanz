@@ -21,7 +21,6 @@
 	"smarttabs": true,
 	"globals": {
 		"jquery": true,
-		"angular": true,
 		"module": true,
 		"define": true,
 		"require": true,
