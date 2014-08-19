@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
 	// configurable paths
 	var config = {
-		src: 'src/assets',
+		src: 'src',
 		dist: <% if (usePHP) { %>'public'<% } else { %>'build'<% } %>,
 		assets: <% if (usePHP) { %>'public/assets'<% } else { %>'build/assets'<% } %>
 	};
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 		config: config,
 		watch: {
 			styles: {
-				files: ['<%%= config.src %>/styles/{,*/}*.{scss,sass,css}'],
+				files: ['<%%= config.src %>/assets/styles/{,*/}*.{scss,sass,css}'],
 				tasks: ['sass']
 			},
 			<% if (usePHP) { %>scripts: {
@@ -124,8 +124,8 @@ module.exports = function(grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%= config.src %>/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
-				'!<%= config.src %>/scripts/vendor/*'
+				'<%%= config.src %>/assets/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
+				'!<%%= config.src %>/assets/scripts/vendor/*'
 			]
 		},
 
@@ -135,8 +135,8 @@ module.exports = function(grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%= config.src %>/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
-				'!<%= config.src %>/scripts/vendor/*'
+				'<%%= config.src %>/assets/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
+				'!<%%= config.src %>/assets/scripts/vendor/*'
 			]
 		},
 		<% if (usePHP) { %>
@@ -144,14 +144,14 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					loadPath: [
-						'<%%= config.src %>/styles',
-						'<%%= config.src %>/bower_components'
+						'<%%= config.src %>/assets/styles',
+						'<%%= config.src %>/assets/bower_components'
 					],
 					style: 'compressed'
 				},
 				files: {
 					'<%%= config.assets %>/styles/main.css': [
-						'<%%= config.src %>/styles/main.scss'
+						'<%%= config.src %>/assets/styles/main.scss'
 					]
 				}
 			}
@@ -160,8 +160,8 @@ module.exports = function(grunt) {
 		concat: {
 			dist: {
 				files: {
-					'<%= config.assets %>/scripts/main.js': [
-						'<%= config.src %>/scripts/{,*/}{,*/}*.js'
+					'<%%= config.assets %>/scripts/main.js': [
+						'<%%= config.src %>/assets/scripts/{,*/}{,*/}*.js'
 					]
 				}
 			}
@@ -170,8 +170,8 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
-					'<%= config.assets %>/scripts/main.js': [
-						'<%= config.src %>/scripts/{,*/}{,*/}*.js'
+					'<%%= config.assets %>/scripts/main.js': [
+						'<%%= config.src %>/assets/scripts/{,*/}{,*/}*.js'
 					]
 				}
 			}
@@ -182,8 +182,8 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: '<%%= config.src %>',
 				src: [
-					'images/{,*/}*',
-					'fonts/{,*/}*'
+					'assets/images/{,*/}*',
+					'assets/fonts/{,*/}*'
 				],
 				dest: '<%%= config.assets %>'
 			},
@@ -199,14 +199,14 @@ module.exports = function(grunt) {
 			build: {
 				options: {
 					loadPath: [
-						'<%%= config.src %>/styles',
-						'<%%= config.src %>/bower_components'
+						'<%%= config.src %>/assets/styles',
+						'<%%= config.src %>/assets/bower_components'
 					],
 					style: 'expanded'
 				},
 				files: {
 					'.tmp/styles/main.css': [
-						'<%%= config.src %>/styles/main.scss'
+						'<%%= config.src %>/assets/styles/main.scss'
 					]
 				}
 			}
@@ -289,14 +289,14 @@ module.exports = function(grunt) {
 					cwd: '<%%= config.src %>',
 					dest: '<%%= config.assets %>',
 					src: [
-						'images/{,*/}*',
-						'fonts/*'
+						'assets/images/{,*/}*',
+						'assets/fonts/*'
 					]
 				}]
 			},
 			styles: {
 				expand: true,
-				cwd: '<%%= config.src %>/styles',
+				cwd: '<%%= config.src %>/assets/styles',
 				dest: '.tmp/styles/',
 				src: '{,*/}*.css'
 			}
