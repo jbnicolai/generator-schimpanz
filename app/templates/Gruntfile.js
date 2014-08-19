@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
 	// configurable paths
 	var config = {
-		src: 'src',
+		src: 'src/assets',
 		dist: <% if (usePHP) { %>'public'<% } else { %>'build'<% } %>,
 		assets: <% if (usePHP) { %>'public/assets'<% } else { %>'build/assets'<% } %>
 	};
@@ -218,10 +218,7 @@ module.exports = function(grunt) {
 				files: {
 					src: [
 						'<%%= config.assets %>/scripts/{,*/}*.js',
-						'<%%= config.assets %>/styles/{,*/}*.css',
-						'<%%= config.assets %>/images/{,*/}*.' +
-							'{png,jpg,jpeg,gif,webp,svg}',
-						'<%%= config.assets %>/fonts/*'
+						'<%%= config.assets %>/styles/{,*/}*.css'
 					]
 				}
 			}
@@ -252,13 +249,6 @@ module.exports = function(grunt) {
 			css: ['<%%= config.assets %>/styles/*.css'],
 			options: {
 				assetsDirs: ['<%%= config.dist %>']
-			}
-		},
-
-		// minifies css
-		cssmin: {
-			options: {
-				root: '<%%= config.src %>'
 			}
 		},
 
