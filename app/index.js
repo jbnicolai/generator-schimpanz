@@ -68,7 +68,6 @@ var SchimpanzGenerator = yeoman.generators.Base.extend({
 		this.directory("src/styles", "src/styles");
 		this.directory("src/scripts", "src/scripts");
 
-		// this.template("index.html", "src/index.html");
 		this.template("favicon.ico", "src/favicon.ico");
 		this.template("robots.txt", "src/robots.txt");
 		this.template("htaccess", "src/.htaccess");
