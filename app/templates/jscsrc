@@ -12,7 +12,7 @@
 	"disallowSpacesInsideArrayBrackets": true,
 	"disallowSpacesInsideObjectBrackets": true,
 	"disallowSpacesInsideParentheses": true,
-	"requireCurlyBraces": ["if", "else", "for", "while", "do", "try", "switch", "catch", "default"],
+	"requireCurlyBraces": ["if", "else", "for", "while", "do", "try", "switch", "catch"],
 	"disallowSpaceBeforeBinaryOperators": [","],
 	"requireLineFeedAtFileEnd": true,
 	"requireCapitalizedConstructors": true,
