@@ -18,21 +18,21 @@ module.exports = function(grunt) {
 		config: config,
 		watch: {
 			styles: {
-				files: ['<%%= config.src %>/assets/styles/{,*/}*.{scss,sass,css}'],
+				files: ['<%%= config.src %>/assets/styles/**/*.{scss,sass,css}'],
 				tasks: ['sass', 'autoprefixer']
 			},
 			<% if (usePHP) { %>scripts: {
-				files: ['<%%= config.src %>/scripts/{,*/}{,*/}*.js'],
+				files: ['<%%= config.src %>/scripts/**/*.js'],
 				tasks: ['jshint', 'jscs', 'concat']
 			}<% } else { %>scripts: {
-				files: ['<%%= config.src %>/scripts/{,*/}{,*/}*.js'],
+				files: ['<%%= config.src %>/scripts/**/*.js'],
 				tasks: ['jshint', 'jscs'],
 				options: {
 					livereload: true
 				}
 			},
 			others: {
-				files: ['<%%= config.src %>/{,*/}*.html'],
+				files: ['<%%= config.src %>/**/*.html'],
 				tasks: ['copy']
 			},
 			livereload: {
@@ -40,9 +40,9 @@ module.exports = function(grunt) {
 					livereload: '<%%= connect.options.livereload %>'
 				},
 				files: [
-					'<%%= config.src %>/{,*/}*.html',
-					'.tmp/styles/{,*/}*.css',
-					'<%%= config.src %>/images/{,*/}*' +
+					'<%%= config.src %>/**/*.html',
+					'.tmp/styles/**/*.css',
+					'<%%= config.src %>/images/**/*' +
 						'.{png,jpg,jpeg,gif,webp,svg}'
 				]
 			}<% } %>
@@ -169,7 +169,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'<%%= config.assets %>/scripts/main.js': [
-						'<%%= config.src %>/assets/scripts/{,*/}{,*/}*.js'
+						'<%%= config.src %>/assets/scripts/**/*.js'
 					]
 				}
 			}
@@ -179,7 +179,7 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'<%%= config.assets %>/scripts/main.js': [
-						'<%%= config.src %>/assets/scripts/{,*/}{,*/}*.js'
+						'<%%= config.src %>/assets/scripts/**/*.js'
 					]
 				}
 			}
@@ -190,8 +190,8 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: '<%%= config.src %>',
 				src: [
-					'assets/images/{,*/}*',
-					'assets/fonts/{,*/}*'
+					'assets/images/**/*',
+					'assets/fonts/**/*'
 				],
 				dest: '<%%= config.assets %>'
 			},
@@ -225,8 +225,8 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					src: [
-						'<%%= config.assets %>/scripts/{,*/}*.js',
-						'<%%= config.assets %>/styles/{,*/}*.css'
+						'<%%= config.assets %>/scripts/**/*.js',
+						'<%%= config.assets %>/styles/**/*.css'
 					]
 				}
 			}
@@ -253,7 +253,7 @@ module.exports = function(grunt) {
 
 		// performs rewrites based on rev and the useminPrepare configuration
 		usemin: {
-			html: ['<%%= config.dist %>/{,*/}*.html'],
+			html: ['<%%= config.dist %>/**/*.html'],
 			css: ['<%%= config.assets %>/styles/*.css'],
 			options: {
 				assetsDirs: ['<%%= config.dist %>']
@@ -272,7 +272,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: '<%%= config.dist %>',
-					src: ['*.html', 'views/{,*/}*.html'],
+					src: ['*.html', 'views/**/*.html'],
 					dest: '<%%= config.dist %>'
 				}]
 			}
@@ -289,7 +289,7 @@ module.exports = function(grunt) {
 						'*.{ico,png,txt}',
 						'.htaccess',
 						'*.html',
-						'views/{,*/}*.html'
+						'views/**/*.html'
 					]
 				},
 				{
@@ -297,7 +297,7 @@ module.exports = function(grunt) {
 					cwd: '<%%= config.src %>',
 					dest: '<%%= config.assets %>',
 					src: [
-						'assets/images/{,*/}*',
+						'assets/images/**/*',
 						'assets/fonts/*'
 					]
 				}]
@@ -306,7 +306,7 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: '<%%= config.src %>/assets/styles',
 				dest: '.tmp/styles/',
-				src: '{,*/}*.css'
+				src: '**/*.css'
 			}
 		}<% } %>
 
