@@ -138,8 +138,7 @@ module.exports = function(grunt) {
 				'<%%= config.src %>/assets/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
 				'!<%%= config.src %>/assets/scripts/vendor/*'
 			]
-		},
-		<% if (usePHP) { %>
+		},<% if (usePHP) { %>
 		sass: {
 			dist: {
 				options: {
