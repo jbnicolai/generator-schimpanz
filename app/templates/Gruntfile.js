@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: ['<%%= config.src %>/assets/styles/{,*/}*.{scss,sass,css}'],
-				tasks: ['sass']
+				tasks: ['sass', 'autoprefixer']
 			},
 			<% if (usePHP) { %>scripts: {
 				files: ['<%%= config.src %>/scripts/{,*/}{,*/}*.js'],
@@ -138,6 +138,15 @@ module.exports = function(grunt) {
 				'<%%= config.src %>/assets/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
 				'!<%%= config.src %>/assets/scripts/vendor/*'
 			]
+		},
+
+		autoprefixer: {
+			options: {
+				browsers: ['last 2 version', 'ie 8', 'ie 9']
+			},
+			dist: {
+				src: '<%%= config.assets %>/styles/main.css'
+			}
 		},<% if (usePHP) { %>
 		sass: {
 			dist: {
