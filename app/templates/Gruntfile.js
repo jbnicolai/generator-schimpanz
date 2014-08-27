@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 				},
 				files: [
 					'<%%= config.src %>/**/*.html',
-					'.tmp/styles/**/*.css',
+					'.tmp/assets/styles/**/*.css',
 					'<%%= config.src %>/images/**/*' +
 						'.{png,jpg,jpeg,gif,webp,svg}'
 				]
@@ -101,7 +101,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				options: {
-					base: '<%%= config.dist %>',
+					base: '<%%= config.dist %>'
 				}
 			}
 		},
@@ -138,15 +138,6 @@ module.exports = function(grunt) {
 				'<%%= config.src %>/assets/scripts/**/*.js',
 				'!<%%= config.src %>/assets/scripts/vendor/*'
 			]
-		},
-
-		autoprefixer: {
-			options: {
-				browsers: ['last 2 version', 'ie 8', 'ie 9']
-			},
-			dist: {
-				src: '<%%= config.assets %>/styles/main.css'
-			}
 		},<% if (usePHP) { %>
 		sass: {
 			dist: {
@@ -213,7 +204,7 @@ module.exports = function(grunt) {
 					style: 'expanded'
 				},
 				files: {
-					'.tmp/styles/main.css': [
+					'.tmp/assets/styles/main.css': [
 						'<%%= config.src %>/assets/styles/main.scss'
 					]
 				}
