@@ -124,7 +124,7 @@ module.exports = function(grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%%= config.src %>/assets/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
+				'<%%= config.src %>/assets/scripts/**/*.js',
 				'!<%%= config.src %>/assets/scripts/vendor/*'
 			]
 		},
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%%= config.src %>/assets/scripts/{,*/}{,*/}{,*/}{,*/}{,*/}*.js',
+				'<%%= config.src %>/assets/scripts/**/*.js',
 				'!<%%= config.src %>/assets/scripts/vendor/*'
 			]
 		},
