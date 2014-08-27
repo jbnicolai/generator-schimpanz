@@ -1,6 +1,6 @@
 {
 	"name": "generator-schimpanz",
-	"version": "0.1.9",
+	"version": "0.1.10",
 	"description": "Schimpanz wonderful Yeoman generator.",
 	"license": "MIT",
 	"main": "app/index.js",
