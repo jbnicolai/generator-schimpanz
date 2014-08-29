@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: ['<%%= config.src %>/assets/styles/**/*.{scss,sass,css}'],
-				tasks: ['sass', 'autoprefixer', 'scsslint']
+				tasks: ['scsslint', 'sass', 'autoprefixer']
 			},
 			<% if (usePHP) { %>scripts: {
 				files: ['<%%= config.src %>/scripts/**/*.js'],
