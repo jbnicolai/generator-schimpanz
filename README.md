@@ -74,6 +74,12 @@ To install SASS you need to run this command
 $ sudo gem install sass
 ```
 
+To use Scss-lint you need to run this command
+
+```
+$ sudo gem install scss-lint
+```
+
 If your project requires Compass, please run this commmand
 
 ```
