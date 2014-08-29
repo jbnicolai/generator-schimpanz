@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: ['<%%= config.src %>/assets/styles/**/*.{scss,sass,css}'],
-				tasks: ['sass', 'autoprefixer']
+				tasks: ['sass', 'autoprefixer', 'scsslint']
 			},
 			<% if (usePHP) { %>scripts: {
 				files: ['<%%= config.src %>/scripts/**/*.js'],
@@ -156,6 +156,18 @@ module.exports = function(grunt) {
 			}
 		},
 
+		scsslint: {
+			options: {
+				bundleExec: false,
+				config: '.scss-lint.yml',
+				reporterOutput: 'scss-lint-report.xml',
+				colorizedOutput: true
+			},
+			files: [
+				'<%%= config.src %>/assets/styles/**/*.scss'
+			]
+		},
+
 		concat: {
 			dist: {
 				files: {
@@ -209,6 +221,18 @@ module.exports = function(grunt) {
 					]
 				}
 			}
+		},
+
+		scsslint: {
+			options: {
+				bundleExec: false,
+				config: '.scss-lint.yml',
+				reporterOutput: 'scss-lint-report.xml',
+				colorizedOutput: true
+			},
+			files: [
+				'<%%= config.src %>/assets/styles/**/*.scss'
+			]
 		},
 
 		// renames files for browser cache busting
@@ -324,12 +348,14 @@ module.exports = function(grunt) {
 		'copy:files',
 		'copy:directories',
 		'sass',
+		'scsslint',
 		'uglify'
 	]);<% } else { %>grunt.registerTask('build', [
 		'test',
 		'clean:dist',
 		'useminPrepare',
 		'sass',
+		'scsslint',
 		'concat',
 		'copy:build',
 		'cssmin',
