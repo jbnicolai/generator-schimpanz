@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: ['<%%= config.src %>/assets/styles/**/*.{scss,sass,css}'],
-				tasks: ['scsslint', 'sass', 'autoprefixer']
+				tasks: ['scsslint', 'sass']
 			},
 			<% if (usePHP) { %>scripts: {
 				files: ['<%%= config.src %>/scripts/**/*.js'],
@@ -118,6 +118,18 @@ module.exports = function(grunt) {
 			server: '.tmp'
 		},<% } %>
 
+		scsslint: {
+			options: {
+				bundleExec: false,
+				config: '.scss-lint.yml',
+				reporterOutput: 'scss-lint-report.xml',
+				colorizedOutput: true
+			},
+			files: [
+				'<%%= config.src %>/assets/styles/**/*.scss'
+			]
+		},
+
 		jscs: {
 			options: {
 				config: '.jscsrc'
@@ -154,18 +166,6 @@ module.exports = function(grunt) {
 					]
 				}
 			}
-		},
-
-		scsslint: {
-			options: {
-				bundleExec: false,
-				config: '.scss-lint.yml',
-				reporterOutput: 'scss-lint-report.xml',
-				colorizedOutput: true
-			},
-			files: [
-				'<%%= config.src %>/assets/styles/**/*.scss'
-			]
 		},
 
 		concat: {
@@ -221,18 +221,6 @@ module.exports = function(grunt) {
 					]
 				}
 			}
-		},
-
-		scsslint: {
-			options: {
-				bundleExec: false,
-				config: '.scss-lint.yml',
-				reporterOutput: 'scss-lint-report.xml',
-				colorizedOutput: true
-			},
-			files: [
-				'<%%= config.src %>/assets/styles/**/*.scss'
-			]
 		},
 
 		// renames files for browser cache busting
